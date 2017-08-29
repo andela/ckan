@@ -53,7 +53,7 @@ rather than creating a public issue on GitHub.
 .. _GitHub Issues: https://github.com/ckan/ckan/issues
 
 
-Contributing to CKAN
+Contributing to CKAN 
 --------------------
 
 For contributing to CKAN or its documentation, see
