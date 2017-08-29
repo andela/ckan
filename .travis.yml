@@ -33,3 +33,5 @@ install:
 
 script:
   - docker ps -a
+notifications:
+  slack: andela:h1gXVDL11qqNzVV5EWyb9jlp
