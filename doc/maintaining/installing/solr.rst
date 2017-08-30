@@ -69,3 +69,87 @@ installed, we need to install and configure Solr.
 
        solr_url=http://127.0.0.1:8983/solr
 
+   .. note::
+
+    These instructions below will explain how to deploy Solr using the Tomcat webserver,
+
+    #.  Download solr-1.4.1 from  https://archive.apache.org/dist/lucene/solr/1.4.1/
+        Unpack the data then copy and paste the directory into the directory where the packages are
+        installed into for easier path description in the configurations of the servers.
+
+        .. parsed-literal::
+
+          (default):cd /path/to/solr-1.4.1/example
+          (default):sudo mv solr/conf/schema.xml solr/conf/schema.xml.backup
+          (default):sudo ln -s /usr/local/lib/ckan/default/src/ckan/ckan/config/solr/schema.xml solr/conf/schema.xml
+
+    #.  Install Tomcat
+
+        Download Apache Tomcat from http://tomcat.apache.org/download-70.cgi
+
+        a. Unpack the files and copy them to your local directory
+
+        .. parsed-literal::
+
+          tar -zxvf apache-tomcat-7.0.56.tar.gz
+          mv apache-tomcat-7.0.56/ /usr/local/apache-tomcat(your path)
+
+        b. Configure Apache Tomcat:
+
+          i. Copy solr.war to tomcat webapps/ directory:
+
+              .. parsed-literal::
+
+                (default):sudo cp /path/to/solr-1.4.1/example/webapps/solr.war /usr/local/apache-tomcat/webapps/solr.war
+
+          ii. To start Apache-Tomcat:
+
+                .. parsed-literal::
+
+                  (default):/usr/local/apache-tomcat/bin/startup.sh
+
+          iii. To stop Apache-Tomcat:
+
+                .. parsed-literal::
+
+                  (default):/usr/local/apache-tomcat/bin/shutdown.sh
+
+          iv. Configure the Tomcat Servlet:
+
+                .. parsed-literal::
+
+                  cd /usr/local/apache-tomcat/webapps/solr/WEB-INF
+                  (your preferred text editor) web.xml
+
+          v. Within the file there is a commented out part of the code that mentions
+             "People who want to hardcode their "Solr Home" directly into the WAR File can set the JNDI property here..."
+             Replace the commented out code with:
+
+                .. parsed-literal::
+
+                  <env-entry>
+                  <env-entry-name>solr/home</env-entry-name>
+                  <env-entry-value>/usr/local/Cellar/solr14/1.4.1/libexec/example/solr</env-entry-value>
+                  <env-entry-type>java.lang.String</env-entry-type>
+                  </env-entry>
+
+              **Warning**:the env-entry-value is solr related configuration and index. (e.g. schema.xml)
+
+          vi. Set the Apache-Tomcat Port (default: 8080): --(optional):
+
+                .. parsed-literal::
+
+                  cd /usr/local/apache-tomcat/conf
+                  (your preferred text editor) server.xml
+
+
+                  <Connector port="8983" protocol="HTTP/1.1" -- set:8983
+                  connectionTimeout="20000"
+                  redirectPort="8443" />
+
+          vii. Running Apache Tomcat:
+
+                .. parsed-literal::
+                  (default):/usr/local/apache-tomcat/bin/startup.sh
+
+        c. Open http://127.0.0.1:8983/solr in a web browser to ensure it works.
