@@ -217,6 +217,32 @@ alternative URL on the edit view form.
         It is not recommended to enable this view type on instances where all users
         can create datasets.
 
+PDF view
++++++++++
+
+`PDF viewer`_: Allows to render PDF files on the resource page.
+
+Adding the pdf_view extension/plugin and explanation on why the plugin does not exist
+in ckan version 2.3 >= .
+Adding the plugin 
+-----------------
+
+Add the relevant view plugin to the ckan.plugins setting on your configuration
+file:ref:`ckan.plugins` setting. eg:
+
+   ckan.plugins = ... image_view recline_view pdf_view
+
+Define the view plugins that you want to be created as default:ref:`ckan.views.default_views`.
+
+   ckan.views.default_views = ... pdf_view
+Issue 2270: Move PDF views into a separate extension
+----------------------------------------------------
+pdf_view existed in ckan version 2.3 and below but was moved to a separate extension in 2015 due to the following reasons, raised in `Pull 2270 <https://github.com/ckan/ckan/pull/2270>`_ and `Pull 2230 <https://github.com/ckan/ckan/pull/2231>`_.
+
+This view remains as a separate plugin because of its reliance on `PDF.js <https://mozilla.github.io/pdf.js/>`_. Later on, the upgrade led to better usage as mentioned in `Issue 2193 <https://github.com/ckan/ckan/issues/2193>`_.
+ 
+Having the view as default may intefere with CKAN's responsiveness to users :ref:`ckan.resource_proxy.max_file_size`
+
 Other view plugins
 ++++++++++++++++++
 
@@ -224,7 +250,6 @@ There are many more view plugins developed by the CKAN team and others which
 are hosted on separate repositories. Some examples include:
 
 * `Dashboard`_: Allows to combine multiple views into a single dashboard.
-* `PDF viewer`_: Allows to render PDF files on the resource page.
 * `GeoJSON map`_: Renders GeoJSON_ files on an interactive map.
 * `Choropleth map`_: Displays data on the DataStore on a choropleth map.
 * `Basic charts`_: Provides alternative graph types and renderings.
