@@ -94,7 +94,7 @@ installed, we need to install and configure Solr.
           tar -zxvf apache-tomcat-7.0.56.tar.gz
           mv apache-tomcat-7.0.56/ /usr/local/apache-tomcat(your path)
 
-        b. Configure Apache Tomcat:
+        b. Setup Apache Tomcat to serve Solr:
 
           i. Copy solr.war to tomcat webapps/ directory:
 
