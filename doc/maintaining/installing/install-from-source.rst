@@ -197,6 +197,18 @@ site_url
 
   Do not add a trailing slash to the URL.
 
+ckan.plugins
+   Add the following plugins: openafrica resource_proxy pdf_view
+   For example::
+
+     ckan.plugins = ... openafrica resource_proxy pdf_view
+
+ckan.views.default_views
+   Add the following default_view: pdf_view
+   For example::
+
+    ckan.views.default_views = ... pdf_view
+
 .. _setting up solr:
 
 -------------

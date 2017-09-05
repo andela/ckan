@@ -136,6 +136,18 @@ The install will whirr away, then towards the end you'll see this::
 
         ckan.site_url = http://demo.ckan.org
 
+    ckan.plugins
+      Add the following plugins: openafrica resource_proxy pdf_view
+      For example::
+
+        ckan.plugins = ... openafrica resource_proxy pdf_view
+
+    ckan.views.default_views
+      Add the following default_view: pdf_view
+      For example::
+
+        ckan.views.default_views = ... pdf_view
+
 #. Initialize your CKAN database by running this command in a terminal::
 
     sudo ckan db init
