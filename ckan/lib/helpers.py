@@ -5,6 +5,10 @@
 Consists of functions to typically be used within templates, but also
 available to Controllers. This module is available to templates as 'h'.
 '''
+
+import urllib2
+import requests
+import urllib
 import email.utils
 import datetime
 import logging
@@ -1648,6 +1652,30 @@ def popular(type_, number, min=1, title=None):
     return snippet('snippets/popular.html',
                    title=title, number=number, min=min)
 
+@core_helper
+def view_count(id):
+    ''' display view counts. '''
+    show_view_count = config.get('show_view_count', False)
+    admin_api_key = 'b48c7387-d59e-4192-8259-ee49ea71d7a2'
+    base_url = config.get('ckan.site_url')
+    if show_view_count and admin_api_key:
+        # Make the HTTP request.
+        full_url = base_url + '/api/3/action/package_show?id=' + id + '&include_tracking=true'
+        request = urllib2.Request(full_url)
+        request.add_header('Authorization', admin_api_key)
+        response = urllib2.urlopen(request)
+        assert response.code == 200
+
+        # Use the json module to load CKAN's response into a dictionary.
+        response_dict = json.loads(response.read())
+        
+        # Check the contents of the response.
+        assert response_dict['success'] is True
+        result = response_dict['result']
+        pprint.pprint(response_dict)
+        number = result['resources'][0]['tracking_summary']['total']
+        title = 'views: ' + str(number)
+        return snippet('snippets/view_count.html', title=title, number=number)
 
 @core_helper
 def groups_available(am_member=False):

@@ -42,6 +42,7 @@ Example:
                 <span class="label label-important">{{ _('Deleted') }}</span>
               {% endif %}
               {{ h.popular('recent views', package.tracking_summary.recent, min=10) if package.tracking_summary }}
+              {{ h.view_count(package.name) }}
             {% endblock %}
           </h3>
         {% endblock %}

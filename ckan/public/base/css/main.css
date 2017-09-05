@@ -9356,3 +9356,7 @@ iframe {
   position: relative !important;
   top: -90px !important;
 }
+
+.view-count {
+  color: lightcoral;
+}
