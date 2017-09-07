@@ -124,7 +124,7 @@ To enable view count, you have to add the following to your config file (e.g pro
 
   show_view_count=true
 
-  admin_api_key=your-api-key``
+  admin_api_key=your-api-key
 
 You can see your API key by visiting ``/user/your-user-name``. It is located in the user details by the left.
 Using a wrong API key may result to an internal server error or 403 error.
