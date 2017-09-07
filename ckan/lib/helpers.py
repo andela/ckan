@@ -1667,7 +1667,7 @@ def view_count(id):
         response_dict = json.loads(response.read())
         assert response_dict['success'] is True
         result = response_dict['result']
-        number = result['resources'][0]['tracking_summary']['total']
+        number = result['tracking_summary']['total']
         title = 'views: ' + str(number)
         return snippet('snippets/view_count.html', title=title, number=number)
     else:
