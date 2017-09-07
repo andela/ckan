@@ -123,6 +123,7 @@ View counts can be enabled to display how many times a package or resource has b
 To enable view count, you have to add the following to your config file (e.g production.ini)::
 
 show_view_count=true
+
 admin_api_key=your-api-key
 
 You can see your API key by visiting ``/user/your-user-name``. It is located in the user details by the left.
