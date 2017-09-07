@@ -120,7 +120,7 @@ Enabling View Counts
 ====================
 
 View counts can be enabled to display how many times a package or resource has been view. 
-To enable view count, you have to add the following to your config file (e.g production.ini):
+To enable view count, you have to add the following to your config file (e.g production.ini)::
 
 show_view_count=true
 admin_api_key=your-api-key
