@@ -7,6 +7,9 @@
     {{ h.resource_display_name(res) | truncate(50) }}<span class="format-label" property="dc:format" data-format="{{ res.format.lower() or 'data' }}">{{ h.get_translated(res, 'format') }}</span>
     {{ h.popular('views', res.tracking_summary.total, min=10) }}
   </a>
+  <span>
+    {% snippet 'snippets/view_count.html', title='views: ' ~ res.tracking_summary.total, number=res.tracking_summary.total %}
+  </span>
   {% endblock %}
   {% block resource_item_description %}
     <p class="description">
