@@ -40,26 +40,41 @@ We use [dokku](http://dokku.viewdocs.io/dokku/) for deployment so you'd need to 
 Once installed, we can do the following:
 
 **Create the Dokku app**
+
 ``Run the ssh command
+
 dokku apps:create ckan
+
 dokku domains:add ckan openafrica.net``
 
 In the case you are using Vagrant, configure the DNS inside Vagrant
 
 **Letsencrypt**
+
 ``sudo dokku plugin:install https://github.com/dokku/dokku-letsencrypt.git
+
 dokku config:set --no-restart ckan DOKKU_LETSENCRYPT_EMAIL = <e-mail>
+
 sudo dokku letsencrypt ckan``
 
 **Solr + Redis + Postgres**
+
 ``sudo dokku plugin:install https://github.com/dokku/dokku-solr.git solr
+
 sudo dokku plugin:install https://github.com/dokku/dokku-redis.git redis
+
 sudo dokku plugin:install https://github.com/dokku/dokku-postgres.git postgres
+
 dokku solr:create solr
+
 dokku redis:create redis
+
 dokku postgres:create postgres
+
 dokku solr:link solr ckan
+
 dokku redis:link redis ckan
+
 dokku postgres:link postgres ckan``
 
 
