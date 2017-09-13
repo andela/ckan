@@ -35,25 +35,24 @@ See the `CKAN Documentation <http://docs.ckan.org>`_ for installation instructio
 
 Deployment
 ------------
-## Deployment
-
 We use [dokku](http://dokku.viewdocs.io/dokku/) for deployment so you'd need to install and set it up first.
 
 Once installed, we can do the following:
-```sh
-# Create the Dokku app
+
+**Create the Dokku app**
+``Run the ssh command
 dokku apps:create ckan
-dokku domains:add ckan openafrica.net
+dokku domains:add ckan openafrica.net``
 
-# In the case you are using Vagrant, configure the DNS inside Vagrant
+In the case you are using Vagrant, configure the DNS inside Vagrant
 
-# Letsencrypt
-sudo dokku plugin:install https://github.com/dokku/dokku-letsencrypt.git
+**Letsencrypt**
+``sudo dokku plugin:install https://github.com/dokku/dokku-letsencrypt.git
 dokku config:set --no-restart ckan DOKKU_LETSENCRYPT_EMAIL = <e-mail>
-sudo dokku letsencrypt ckan
+sudo dokku letsencrypt ckan``
 
-# Solr + Redis
-sudo dokku plugin:install https://github.com/dokku/dokku-solr.git solr
+**Solr + Redis + Postgres**
+``sudo dokku plugin:install https://github.com/dokku/dokku-solr.git solr
 sudo dokku plugin:install https://github.com/dokku/dokku-redis.git redis
 sudo dokku plugin:install https://github.com/dokku/dokku-postgres.git postgres
 dokku solr:create solr
@@ -61,19 +60,18 @@ dokku redis:create redis
 dokku postgres:create postgres
 dokku solr:link solr ckan
 dokku redis:link redis ckan
-dokku postgres:link postgres ckan
-```
+dokku postgres:link postgres ckan``
 
-# Setting environment variables
-dokku config:set ckan CKAN_SQLALCHEMY_URL = <postgres_dsn>
+
+**Setting environment variables**
+``dokku config:set ckan CKAN_SQLALCHEMY_URL = <postgres_dsn>``
 
 
 Once done, you can push this repository to dokku:
 
-```sh
-git remote add dokku dokku@openafrica.net:ckan
-git push dokku
-```
+``git remote add dokku dokku@openafrica.net:ckan
+git push dokku``
+
 
 
 Support
