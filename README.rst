@@ -33,6 +33,49 @@ Installation
 See the `CKAN Documentation <http://docs.ckan.org>`_ for installation instructions.
 
 
+Deployment
+------------
+## Deployment
+
+We use [dokku](http://dokku.viewdocs.io/dokku/) for deployment so you'd need to install and set it up first.
+
+Once installed, we can do the following:
+```sh
+# Create the Dokku app
+dokku apps:create ckan
+dokku domains:add ckan openafrica.net
+
+# In the case you are using Vagrant, configure the DNS inside Vagrant
+
+# Letsencrypt
+sudo dokku plugin:install https://github.com/dokku/dokku-letsencrypt.git
+dokku config:set --no-restart ckan DOKKU_LETSENCRYPT_EMAIL = <e-mail>
+sudo dokku letsencrypt ckan
+
+# Solr + Redis
+sudo dokku plugin:install https://github.com/dokku/dokku-solr.git solr
+sudo dokku plugin:install https://github.com/dokku/dokku-redis.git redis
+sudo dokku plugin:install https://github.com/dokku/dokku-postgres.git postgres
+dokku solr:create solr
+dokku redis:create redis
+dokku postgres:create postgres
+dokku solr:link solr ckan
+dokku redis:link redis ckan
+dokku postgres:link postgres ckan
+```
+
+# Setting environment variables
+dokku config:set ckan CKAN_SQLALCHEMY_URL = <postgres_dsn>
+
+
+Once done, you can push this repository to dokku:
+
+```sh
+git remote add dokku dokku@openafrica.net:ckan
+git push dokku
+```
+
+
 Support
 -------
 
@@ -53,7 +96,7 @@ rather than creating a public issue on GitHub.
 .. _GitHub Issues: https://github.com/ckan/ckan/issues
 
 
-Contributing to CKAN 
+Contributing to CKAN
 --------------------
 
 For contributing to CKAN or its documentation, see
