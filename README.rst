@@ -39,15 +39,13 @@ We use [dokku](http://dokku.viewdocs.io/dokku/) for deployment so you'd need to 
 
 **Install Dokku on MAC:**
 
-Dokku runs on Linux so MAC users will first have to run dokku on a virtual machine
+Dokku runs on Linux so MAC users will have to setup dokku on a virtual machine
 
 ``brew cask install virtualbox``
 
 ``brew cask install vagrant``
 
-Setup up Dokku
-
-``git clone https://github.com/dokku/dokku.git`
+``git clone https://github.com/dokku/dokku.git``
 
 ``cd dokku``
 
@@ -76,7 +74,7 @@ Once installed, we can do the following:
 
 **Create the Dokku app**
 
-``Run the ssh command``
+Run the ssh command: ``vagrant ssh``
 
 ``dokku apps:create ckan``
 
