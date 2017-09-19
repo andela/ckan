@@ -63,9 +63,9 @@ Add vagrant SSH key to the running Dokku server
 
 Upload your ssh key to Dokku server
 
-``cat ~/.ssh/id_rsa.pub | ssh dokku@dokku.me "sudo sshcommand acl-add dokku <name>"``
+``cat ~/.ssh/id_rsa.pub | ssh root@dokku.me "sudo sshcommand acl-add dokku <name>"``
 
-To ensure everything is running fine, run ``ssh dokku@dokku.me version``
+To ensure everything is running fine, run ``ssh root@dokku.me version``
 
 Access your machine using ``vagrant ssh``
 
